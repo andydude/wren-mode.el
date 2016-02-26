@@ -13,10 +13,10 @@ A continuation of [v2e4lisp][v2e4lisp] mode for my own joy of learning
 
 Copy `wren-mode.el` somewhere on your `load path` and `require` it.
 
-    ```el
-    (add-to-list 'load-path "~/.emacs.d/lisp")
-    (require 'wren-mode)
-    ```
+```el
+(add-to-list 'load-path "~/.emacs.d/lisp")
+(require 'wren-mode)
+```
 
 
 [emacs]: https://www.gnu.org/software/emacs/
