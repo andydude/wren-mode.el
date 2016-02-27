@@ -47,16 +47,11 @@
     "while")
   "Wren language keywords.")
 
+
 (defconst wren-constants
   '("true" "false" "null")
   "Wren language constants.")
 
-
-(defcustom wren-tab-width tab-width
-  "The tab width to use when indenting."
-  :type 'integer
-  :group 'wren
-  :safe 'integerp)
 
 (defvar wren-this-regexp "\\_<_\\(\\w\\|\\s_\\)+\\_>")
 ;; (defvar wren-defun-regexp "\\w+\\( \\|\t\\){")
@@ -142,10 +137,10 @@
        (closing-p
         (if (looking-at "[\\[{(]")
             (current-indentation)
-          (- (current-indentation) wren-tab-width)))
+          (- (current-indentation) tab-width)))
 
        ((looking-at "[\\[{(]")
-        (+ (current-indentation) wren-tab-width))
+        (+ (current-indentation) tab-width))
 
        (t (current-indentation))))))
 
