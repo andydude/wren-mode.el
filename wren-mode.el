@@ -53,14 +53,13 @@
   "Wren language constants.")
 
 
-(defvar wren-this-regexp "\\_<_\\(\\w\\|\\s_\\)+\\_>")
-;; (defvar wren-defun-regexp "\\w+\\( \\|\t\\){")
-
-
 (defvar wren-font-lock-keywords
   `((,(regexp-opt wren-keywords 'symbols) . font-lock-keyword-face)
     (,(regexp-opt wren-constants 'symbols) . font-lock-constant-face)
-    (,wren-this-regexp . font-lock-variable-name-face))
+    ("\\_<class\\_>[[:space:]]+\\([[:alnum:]_]+\\)" 1 font-lock-type-face)
+    ("\\_<class\\_>[[:space:]]+\\([[:alnum:]_]+\\)[[:space:]]+is[[:space:]]+\\([[:alnum:]_]+\\)" 2 font-lock-type-face)
+    ("\\_<var\\_>[[:space:]]+\\([[:alpha:]][[:alnum:]_]*\\)" 1 font-lock-variable-name-face)
+    ("\\_<_\\(\\w\\|\\s_\\)+\\_>" . font-lock-variable-name-face))
   "Wren keywords highlighting.")
 
 
