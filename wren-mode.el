@@ -40,26 +40,65 @@
 ;;; Code:
 
 
-(defconst wren-keywords
-  '("break" "class" "construct" "else" "for"
-    "foreign" "if" "import" "in" "is"
-    "return" "static" "super" "this" "var"
-    "while")
+(defconst wren-keywords-regexp
+  (rx symbol-start
+      (or "break" "class" "construct" "else" "for"
+          "foreign" "if" "import" "in" "is" "return"
+          "static" "super" "this" "var" "while")
+      symbol-end)
   "Wren language keywords.")
 
 
-(defconst wren-constants
-  '("true" "false" "null")
+(defconst wren-constants-regexp
+  (rx symbol-start
+      (or "true" "false" "null")
+      symbol-end)
   "Wren language constants.")
 
 
+(defconst wren-class-regexp
+  (rx symbol-start "class" symbol-end
+      (one-or-more whitespace)
+      (group
+       (one-or-more (any alphanumeric "_"))))
+  "Wren class declaration regexp.")
+
+
+(defconst wren-superclass-regexp
+  (rx symbol-start "class" symbol-end
+      (one-or-more whitespace)
+      (group
+       (one-or-more (any alphanumeric "_")))
+      (one-or-more whitespace)
+      "is"
+      (one-or-more whitespace)
+      (group
+       (one-or-more (any alphanumeric "_"))))
+  "Wren superclass declaration regexp.")
+
+
+(defconst wren-var-regexp
+    (rx symbol-start "var" symbol-end
+        (zero-or-more whitespace)
+        (group
+            (one-or-more (any alphanumeric "_"))))
+    "Wren variable declaration regexp.")
+
+
+(defconst wren-this-regexp
+  (rx symbol-start
+      "_" (one-or-more (any alphanumeric "_"))
+      symbol-end)
+  "Wren this variable regexp.")
+
+
 (defvar wren-font-lock-keywords
-  `((,(regexp-opt wren-keywords 'symbols) . font-lock-keyword-face)
-    (,(regexp-opt wren-constants 'symbols) . font-lock-constant-face)
-    ("\\_<class\\_>[[:space:]]+\\([[:alnum:]_]+\\)" 1 font-lock-type-face)
-    ("\\_<class\\_>[[:space:]]+\\([[:alnum:]_]+\\)[[:space:]]+is[[:space:]]+\\([[:alnum:]_]+\\)" 2 font-lock-type-face)
-    ("\\_<var\\_>[[:space:]]+\\([[:alpha:]][[:alnum:]_]*\\)" 1 font-lock-variable-name-face)
-    ("\\_<_\\(\\w\\|\\s_\\)+\\_>" . font-lock-variable-name-face))
+  `((,wren-keywords-regexp . font-lock-keyword-face)
+    (,wren-constants-regexp . font-lock-constant-face)
+    (,wren-class-regexp 1 font-lock-type-face)
+    (,wren-superclass-regexp 2 font-lock-type-face)
+    (,wren-var-regexp 1 font-lock-variable-name-face)
+    (,wren-this-regexp . font-lock-variable-name-face))
   "Wren keywords highlighting.")
 
 
