@@ -18,6 +18,10 @@ Copy `wren-mode.el` somewhere on your `load path` and `require` it.
 (require 'wren-mode)
 ```
 
+### Melpa
+
+Not yet
+
 
 [emacs]: https://www.gnu.org/software/emacs/
 [wren]: http://wren.io/
