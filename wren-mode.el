@@ -210,7 +210,7 @@
 
   ;; abbrev table
   ;; See: https://groups.google.com/forum/#!topic/wren-lang/T3uZmpZT6PA
-  (define-abbrev wren-mode-abbrev-table "Sys" "System" nil :case-fixed)
+  (define-abbrev wren-mode-abbrev-table "Sys" "System")
 
   (setq font-lock-defaults '((wren-font-lock-keywords)))
 
