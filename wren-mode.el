@@ -111,11 +111,11 @@
 (defun wren-previous-indent ()
   "Return the indentation level of the previous non-blank line."
   (save-excursion
-    (wren-goto-preivous-nonblank-line)
+    (wren-goto-previous-nonblank-line)
     (current-indentation)))
 
 
-(defun wren-goto-preivous-nonblank-line ()
+(defun wren-goto-previous-nonblank-line ()
   "Move backward until on a non blank line."
   (forward-line -1)
   (while (and (looking-at "^[ \t]*$") (not (bobp)))
@@ -158,7 +158,7 @@
                       (looking-at "[]})]"))))
 
     (save-excursion
-      (wren-goto-preivous-nonblank-line)
+      (wren-goto-previous-nonblank-line)
       (end-of-line)
       (skip-chars-backward " \t")
       (forward-char -1)
