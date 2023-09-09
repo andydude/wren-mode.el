@@ -173,8 +173,8 @@
         (current-indentation))
 
        (closing-p
-        (if (looking-at "[\\[{(\\|]")
-            (+ (current-indentation) tab-width)
+        (if (looking-at "[\\[{(|]")
+            (current-indentation)
           (- (current-indentation) tab-width)))
 
        ((looking-at "[\\[{(|]")
